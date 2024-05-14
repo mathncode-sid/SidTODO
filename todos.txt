@@ -1,0 +1,5 @@
+prepare
+shower
+clean
+throw
+fix
