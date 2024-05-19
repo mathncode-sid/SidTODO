@@ -1,5 +1,2 @@
-prepare
-shower
 clean
-throw
-fix
+Fix it well
