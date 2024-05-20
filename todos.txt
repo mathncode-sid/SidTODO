@@ -5,3 +5,5 @@ Play
 Clean the bag
 Fix the drawer
 add a new member
+Make Pizza
+Make Soup
