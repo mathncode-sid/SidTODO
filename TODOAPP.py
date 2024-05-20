@@ -24,34 +24,48 @@ while True:
             print(row)
 
     elif user_action.startswith("edit"):
-        print("Got it!")
-        number = int(user_action[5:])
-        print(number)
-        number = number - 1
+        try:
+            print("Got it!")
+            number = int(user_action[5:])
+            print(number)
+            number = number - 1
 
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
-        new_todo = input("Enter new todo: ")
-        todos[number] = new_todo + '\n'
+            new_todo = input("Enter new todo: ")
+            todos[number] = new_todo + '\n'
 
-        with open('todos.txt', 'w') as file:
-            file.writelines(todos)
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
+
+        except ValueError:
+            print("Your command is not valid.")
+            continue
 
     elif user_action.startswith("complete"):
-        number = int(user_action[9:])
+        try:
+            if len(user_action) > 9:
+                number = int(user_action[9:])
+            else:
+                print("Please specify a number to complete.")
+                continue
 
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()
-        index = number - 1
-        todo_to_remove = todos[index].strip('\n')
-        todos.pop(index)
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
+            index = number - 1
+            todo_to_remove = todos[index].strip('\n')
+            todos.pop(index)
 
-        with open('todos.txt', 'w') as file:
-            file.writelines(todos)
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
 
-        message = f"Todo {todo_to_remove} was removed from the list."
-        print(message)
+            message = f"Todo {todo_to_remove} was removed from the list."
+            print(message)
+
+        except IndexError:
+            print("The item is not in the todo")
+            continue
 
     elif user_action.startswith("exit"):
         break
