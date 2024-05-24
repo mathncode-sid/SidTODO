@@ -1,5 +1,4 @@
 Grind all day
-Zoom
 Chase
 Play
 Clean the bag
@@ -7,3 +6,4 @@ Fix the drawer
 add a new member
 Make Pizza
 Make Soup
+Clean the Code
