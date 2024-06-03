@@ -46,7 +46,7 @@ while window_open:
                     new_todo = values['todo']
 
                     todos = functions.get_todos()
-                    index = todos.index(todo_to_edit.strip() + "\n")
+                    index = [todo.strip() for todo in todos].index(todo_to_edit)
                     todos[index] = new_todo + "\n"
                     functions.write_todos(todos)
                     window['todos'].update(values=[todo.strip() for todo in todos])
@@ -56,7 +56,8 @@ while window_open:
                 try:
                     todo_to_complete = values['todos'][0]
                     todos = functions.get_todos()
-                    todos.remove(todo_to_complete)
+                    index = [todo.strip() for todo in todos].index(todo_to_complete)
+                    del todos[index]
                     functions.write_todos(todos)
                     window['todos'].update(values=todos)
                     window['todo'].update(value='')
