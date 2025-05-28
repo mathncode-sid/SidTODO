@@ -1,18 +1,19 @@
 import functions
 import PySimpleGUI as sg
 import time
+from PIL import Image
 
 sg.theme("DarkGrey10")
 
 clock = sg.Text('', key="clock")
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter todo", key="todo")
-add_button = sg.Button(size=10, image_source="add.png", mouseover_colors="LightBlue2",
+add_button = sg.Button(size=10, image_source="assets/add.png", mouseover_colors="LightBlue2",
                        tooltip="Add Todo", key="Add")
 edit_button = sg.Button("Edit")
 list_box = sg.Listbox(values=functions.get_todos(), key="todos",
                       enable_events=True, size=[45, 10])
-complete_button = sg.Button(size=12, image_source="complete.png", mouseover_colors="LightBlue2",
+complete_button = sg.Button(size=12, image_source="assets/complete.png", mouseover_colors="LightBlue2",
                             tooltip="Complete Todo Item", key="Complete")
 exit_button = sg.Button("Exit")
 
@@ -69,3 +70,11 @@ while window_open:
                 window['todo'].update(value=values['todos'][0])
 
 window.close()
+
+def resize_image(path, size):
+    img = Image.open(path)
+    img = img.resize(size)
+    img.save(path)
+
+resize_image("assets/add.png", (32, 32))
+resize_image("assets/complete.png", (32, 32))
